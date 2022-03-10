@@ -6,7 +6,7 @@ const port =process.env.port;
 const path = require('path');
 const hbs = require('hbs');
 //Traemos la librería para la conexión
-const mysql = require('mysql2');
+/* const mysql = require('mysql2'); */
 
 //Creamos la configuración de la conexión
 /* const conexion =  mysql.createConnection({
