@@ -1,14 +1,15 @@
 
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const Port =8080;
+const port =process.env.PORT;
 const path = require('path');
 const hbs = require('hbs');
 //Traemos la librería para la conexión
 const mysql = require('mysql2');
 
 //Creamos la configuración de la conexión
-const conexion =  mysql.createConnection({
+/* const conexion =  mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: "root",
@@ -21,7 +22,7 @@ conexion.connect((error) =>{
     if(error) throw error;
     console.log('Conexión a la Data Base exitosa!!');
 });
-
+ */
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -151,7 +152,7 @@ app.post('/contacto', (req, res) =>{
 //conexion.end();
 
 app.listen(Port, () =>{
-    console.log(`Servidor está trabajando en el Puerto ${Port}`);
+    console.log(`Servidor está trabajando en el Puerto ${port}`);
 });
 
 app.on('error', (err) =>{
