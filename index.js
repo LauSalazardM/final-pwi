@@ -2,7 +2,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const port =process.env.PORT;
+const port =process.env.port;
 const path = require('path');
 const hbs = require('hbs');
 //Traemos la librería para la conexión
@@ -151,7 +151,7 @@ app.post('/contacto', (req, res) =>{
 
 //conexion.end();
 
-app.listen(Port, () =>{
+app.listen(port, () =>{
     console.log(`Servidor está trabajando en el Puerto ${port}`);
 });
 
