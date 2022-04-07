@@ -2,7 +2,7 @@
 
     <div class="text-center m-4">
         <hr>
-        <h1>{{titulo}}</h1>
+        <h1>Carga de {{titulo}}</h1>
         <hr>
     </div>
     <div class="container-fluid w-{{width}}">
@@ -13,24 +13,12 @@
                     <label class="row form-label justify-content-center mt-1">CPU</label>
                 </div>
                 <div class="col p-3">
-                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-laptop m-1" style="font-size: 3rem;"></i></a>
+                    <a href="/notebook" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-laptop m-1" style="font-size: 3rem;"></i></a>
                     <label class="row form-label justify-content-center mt-1">Notebook</label>
                 </div>
                 <div class="col p-3">
-                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-display m-1" style="font-size: 3rem;"></i></a>
+                    <a href="/monitor" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-display m-1" style="font-size: 3rem;"></i></a>
                     <label class="row form-label justify-content-center mt-1">Monitor</label>
-                </div>
-                <div class="col p-3">
-                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-printer m-1" style="font-size: 3rem;"></i></a>
-                    <label class="row form-label justify-content-center mt-1">Impresora</label>
-                </div>
-                <div class="col p-3">
-                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-file-earmark m-1" style="font-size: 3rem;"></i></a>
-                    <label class="row form-label justify-content-center mt-1">Escaner</label>
-                </div>
-                <div class="col p-3">
-                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-three-dots m-1" style="font-size: 3rem;"></i></a>
-                    <label class="row form-label justify-content-center mt-1">Otro</label>
                 </div>
             </div>
         {{/if}}
@@ -43,18 +31,9 @@
             {{> c_ntb}}
         {{/if}}
 
-        {{#if scn}}
-            {{> c_scn}}
+        {{#if disp}}
+            {{> c_disp}}
         {{/if}}
-
-        {{#if ptr}}
-            {{> c_ptr}}
-        {{/if}}
-
-        {{#if cpu}}
-            {{> c_cpu}}
-        {{/if}}
-
 
         <div class="text-center validacion">
             <h2 class="text-danger">

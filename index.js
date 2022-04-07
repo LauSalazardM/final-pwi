@@ -51,13 +51,13 @@ app.get('/carga', (req, res) =>{
 
 app.get('/cpu', (req, res) =>{
     res.render('carga', {
-        titulo: 'Ingrese los datos del modelo',
+        titulo: 'CPU',
         width: 75,
-        cpu: true
+        cpu: true,
+        post: 'cpu'
     })
 });
-
-app.post('/carga', (req, res) =>{
+app.post('/cpu', (req, res) =>{
     //Desestructuración de las variables
 
     const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
@@ -102,15 +102,70 @@ app.post('/carga', (req, res) =>{
     }
 });
 
+
 app.get('/notebook', (req, res) =>{
     res.render('carga', {
-        titulo: 'Ingrese los datos del modelo',
+        titulo: 'Notebook',
         width: 75,
-        cpu: true
+        ntb: true,
+        post: 'notebook'
     })
 });
+app.post('/notebook', (req, res) =>{
+    //Desestructuración de las variables
 
-app.post('/cpu', (req, res) =>{
+    const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
+
+    if(marca == '' || modelo == '' || fecha_mercado == ''){
+        let validacion = 'Por favor, ingrese todos los datos obligatorios';
+        res.render('carga', {
+            titulo: 'error',
+            width: 75,
+            validacion
+        });
+    }else{
+        console.log('Marca '+ marca);
+        console.log('Modelo ' + modelo);
+        console.log('Lanzamiento ' + fecha_mercado);
+        console.log('Tipo de RAM '+ ram_tipo);
+        console.log('Tipo de DSK ' + dsk_tipo);
+        console.log('Marca MB ' + mb_marca);
+        console.log('Codigo MB '+ mb_cod);
+        console.log('marca CPU ' + core_marca);
+        console.log('Codigo CPU ' + core_cod);
+        console.log('Lanzamiento CPU ' + core_año);
+
+        res.render('carga', {titulo: 'Los datos fueron ingresados correctamente'})
+
+        //Insertar datos a la DB
+/*         let data = {
+            producto_nombre: nombre, 
+            producto_precio: precio,
+            producto_descripcion: descripcion
+        }
+
+        let sql = 'Insert into productos set ?';
+ */
+/*         conexion.query(sql, data, (error, results) =>{
+            if(error) throw error;
+            res.render('index', {
+                titulo: 'Bienvenidos a la App',
+            }); 
+        })
+ */    
+    }
+});
+
+
+app.get('/monitor', (req, res) =>{
+    res.render('carga', {
+        titulo: 'Monitor',
+        width: 75,
+        disp: true,
+        post: 'monitor'
+    })
+});
+app.post('/monitor', (req, res) =>{
     //Desestructuración de las variables
 
     const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
