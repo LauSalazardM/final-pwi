@@ -7,15 +7,15 @@ const path = require('path');
 const hbs = require('hbs');
 
 //Traemos la librería para la conexión
-/* const mysql = require('mysql2'); */
+const mysql = require('mysql2');
 
 //Creamos la configuración de la conexión
-/* const conexion =  mysql.createConnection({
+const conexion =  mysql.createConnection({
     host: "localhost",
     port: 3306,
-    user: "root",
-    password: "35639.Lauti",
-    database: "prueba",
+    user: process.env.USR,
+    password: process.env.PASS,
+    database: process.env.DB,
 });
 
 //Conectamos a la DB
@@ -23,63 +23,138 @@ conexion.connect((error) =>{
     if(error) throw error;
     console.log('Conexión a la Data Base exitosa!!');
 });
- */
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname,"public")));
 
 //Configuramos el Motor de Plantillas
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
+//Páginas
 
 app.get('/', (req, res) =>{
-    res.render('index', {titulo: 'Bienvenidos a la App'})
+    res.render('index', {
+        titulo: 'Inventario informatico',
+    })
 });
 
 app.get('/carga', (req, res) =>{
-    res.render('carga', {titulo: 'Cargar productos en BD'})
+    res.render('carga', {
+        titulo: 'Seleccione un tipo de dispositivo',
+        width: 50,
+        carga: true
+    })
 });
 
+app.get('/cpu', (req, res) =>{
+    res.render('carga', {
+        titulo: 'Ingrese los datos del modelo',
+        width: 75,
+        cpu: true
+    })
+});
 
 app.post('/carga', (req, res) =>{
-
     //Desestructuración de las variables
-    const { nombre, precio, descripcion } = req.body;
-        
-    if(nombre == "" || precio == ""){
-        
-        let validacion = 'Faltan datos para guardar el Producto';
-        
+
+    const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
+
+    if(marca == '' || modelo == '' || fecha_mercado == ''){
+        let validacion = 'Por favor, ingrese todos los datos obligatorios';
         res.render('carga', {
-            titulo: 'carga para Completar',
+            titulo: 'error',
+            width: 75,
             validacion
         });
-
     }else{
+        console.log('Marca '+ marca);
+        console.log('Modelo ' + modelo);
+        console.log('Lanzamiento ' + fecha_mercado);
+        console.log('Tipo de RAM '+ ram_tipo);
+        console.log('Tipo de DSK ' + dsk_tipo);
+        console.log('Marca MB ' + mb_marca);
+        console.log('Codigo MB '+ mb_cod);
+        console.log('marca CPU ' + core_marca);
+        console.log('Codigo CPU ' + core_cod);
+        console.log('Lanzamiento CPU ' + core_año);
 
-        console.log(nombre);
-        console.log(precio);
-        console.log(descripcion);
+        res.render('carga', {titulo: 'Los datos fueron ingresados correctamente'})
 
         //Insertar datos a la DB
-        let data = {
+/*         let data = {
             producto_nombre: nombre, 
             producto_precio: precio,
             producto_descripcion: descripcion
         }
 
         let sql = 'Insert into productos set ?';
-
-        conexion.query(sql, data, (error, results) =>{
+ */
+/*         conexion.query(sql, data, (error, results) =>{
             if(error) throw error;
             res.render('index', {
                 titulo: 'Bienvenidos a la App',
             }); 
         })
+ */    
     }
 });
+
+app.get('/notebook', (req, res) =>{
+    res.render('carga', {
+        titulo: 'Ingrese los datos del modelo',
+        width: 75,
+        cpu: true
+    })
+});
+
+app.post('/cpu', (req, res) =>{
+    //Desestructuración de las variables
+
+    const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
+
+    if(marca == '' || modelo == '' || fecha_mercado == ''){
+        let validacion = 'Por favor, ingrese todos los datos obligatorios';
+        res.render('carga', {
+            titulo: 'error',
+            width: 75,
+            validacion
+        });
+    }else{
+        console.log('Marca '+ marca);
+        console.log('Modelo ' + modelo);
+        console.log('Lanzamiento ' + fecha_mercado);
+        console.log('Tipo de RAM '+ ram_tipo);
+        console.log('Tipo de DSK ' + dsk_tipo);
+        console.log('Marca MB ' + mb_marca);
+        console.log('Codigo MB '+ mb_cod);
+        console.log('marca CPU ' + core_marca);
+        console.log('Codigo CPU ' + core_cod);
+        console.log('Lanzamiento CPU ' + core_año);
+
+        res.render('carga', {titulo: 'Los datos fueron ingresados correctamente'})
+
+        //Insertar datos a la DB
+/*         let data = {
+            producto_nombre: nombre, 
+            producto_precio: precio,
+            producto_descripcion: descripcion
+        }
+
+        let sql = 'Insert into productos set ?';
+ */
+/*         conexion.query(sql, data, (error, results) =>{
+            if(error) throw error;
+            res.render('index', {
+                titulo: 'Bienvenidos a la App',
+            }); 
+        })
+ */    
+    }
+});
+
 
 app.post('/update', (req, res) =>{
 
@@ -101,14 +176,14 @@ app.post('/update', (req, res) =>{
 });
 
 
-app.get('/productos', (req, res) =>{
+app.get('/listado', (req, res) =>{
 
-    let sql = 'SELECT * FROM productos';
+    let sql = 'SELECT * FROM AI';
 
     conexion.query(sql, (error, results) =>{
         if(error) throw error;
-        res.render('productos', {
-            titulo: 'Productos',
+        res.render('listado', {
+            titulo: 'listado',
             results: results,        
         })
     })

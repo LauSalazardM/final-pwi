@@ -1,0 +1,71 @@
+    <form action="/carga" method="post">
+        <div class="row g-3">
+            <h4 class="mt-4 col-12">Datos comunes</h4>
+            <div class="col-md-4">
+                <label class="form-label-sm">Marca</label>
+                <input type="text" class="form-control" name="marca" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label-sm">Modelo</label>
+                <input type="text" class="form-control" name="modelo" required>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label-sm">Año de lanzamiento</label>
+                <input type="number" class="form-control" min="2000" max="2030" name="fecha_mercado" required>
+            </div>
+            <h4 class="col-12 mt-4">Especificos Notebook</h4>
+            <div class="col-md-2">
+                <label class="form-label-sm">Tipo de RAM</label>
+                <select name="ram_tipo" class="form-select">
+                    <option selected disabled>Opción...</option>
+                    <option value="DDR1">DDR1</option>
+                    <option value="DDR2">DDR2</option>
+                    <option value="DDR3">DDR3</option>
+                    <option value="DDR4">DDR4</option>
+                    <option value="DDR5">DDR5</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label-sm">Tipo de almacenamiento</label>
+                <select name="dsk_tipo" class="form-select">
+                    <option selected disabled>Opción...</option>
+                    <option value="SSD">SSD</option>
+                    <option value="HDD">HDD</option>
+                    <option value="SSD_HDD">SSD + HDD</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label-sm">Marca Motherboard</label>
+                <select name="mb_marca" class="form-select">
+                    <option selected disabled>Opción...</option>
+                    <option value="asus">Asus</option>
+                    <option value="gigabyte">Gigabyte</option>
+                    <option value="intel">Intel</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label class="form-label-sm">Código de Mother</label>
+                <input type="text" class="form-control" name="mb_cod">
+            </div>
+            <h5 class="mt-4 col-12">Procesador</h5>
+            <div class="col-4">
+                <label class="form-label-sm">Marca del procesador</label>
+                <select name="core_marca" class="form-select">
+                    <option selected disabled>Opción...</option>
+                    <option value="intel">Intel</option>
+                    <option value="amd">AMD</option>
+                </select>
+            </div>
+            <div class="col-4">
+                <label class="form-label-sm">Código del procesador</label>
+                <input type="text" class="form-control" name="core_cod" placeholder="ej: i5-10400">
+            </div>
+            <div class="col-4">
+                <label class="form-label-sm">Lanzamiento del procesador</label>
+                <input type="number" min="2000" max="2030" class="form-control" name="core_año" placeholder="ej: 2002">
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <input type="submit" class="my-4 btn btn-primary w-50 p-2" value="Enviar Datos">
+        </div>
+    </form>

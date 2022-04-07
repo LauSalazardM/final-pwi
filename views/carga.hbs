@@ -1,49 +1,65 @@
+<div class="container h-80">
 
-
-
-<div class="container">
-
-    <div class="text-center m-5">
+    <div class="text-center m-4">
         <hr>
         <h1>{{titulo}}</h1>
         <hr>
     </div>
+    <div class="container-fluid w-{{width}}">
+        {{#if carga}}
+            <div class="row row-cols-3 text-center">
+                <div class="col p-3">
+                    <a href="/cpu" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-pc m-1" style="font-size: 3rem;"></i></a>
+                    <label class="row form-label justify-content-center mt-1">CPU</label>
+                </div>
+                <div class="col p-3">
+                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-laptop m-1" style="font-size: 3rem;"></i></a>
+                    <label class="row form-label justify-content-center mt-1">Notebook</label>
+                </div>
+                <div class="col p-3">
+                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-display m-1" style="font-size: 3rem;"></i></a>
+                    <label class="row form-label justify-content-center mt-1">Monitor</label>
+                </div>
+                <div class="col p-3">
+                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-printer m-1" style="font-size: 3rem;"></i></a>
+                    <label class="row form-label justify-content-center mt-1">Impresora</label>
+                </div>
+                <div class="col p-3">
+                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-file-earmark m-1" style="font-size: 3rem;"></i></a>
+                    <label class="row form-label justify-content-center mt-1">Escaner</label>
+                </div>
+                <div class="col p-3">
+                    <a href="/carga" class="row btn btn-outline-secondary justify-content-center"><i class="bi bi-three-dots m-1" style="font-size: 3rem;"></i></a>
+                    <label class="row form-label justify-content-center mt-1">Otro</label>
+                </div>
+            </div>
+        {{/if}}
 
-    <div class="row">
-        <form action="./carga" method="post">
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Nombre</label>
-                <input type="text" class="form-control" name="nombre" placeholder="Producto">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Precio</label>
-                <input type="number" class="form-control" name="precio" placeholder="Precio">
-            </div>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Descripción</label>
-                <input type="text" class="form-control" name="descripcion" placeholder="Descripción">
-            </div>
-            <div class="mb-3 text-center">
-                <input type="submit" class="button btn-primary w-50 p-2" value="Enviar Datos">
-            </div>
-        </form>
+        {{#if cpu}}
+            {{> c_cpu}}
+        {{/if}}
+
+        {{#if ntb}}
+            {{> c_ntb}}
+        {{/if}}
+
+        {{#if scn}}
+            {{> c_scn}}
+        {{/if}}
+
+        {{#if ptr}}
+            {{> c_ptr}}
+        {{/if}}
+
+        {{#if cpu}}
+            {{> c_cpu}}
+        {{/if}}
+
 
         <div class="text-center validacion">
             <h2 class="text-danger">
                 {{validacion}}
             </h2>
         </div>
-
     </div>
-
-
-
-
-
-
-
-
-
-
-    
 </div>

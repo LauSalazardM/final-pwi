@@ -1,18 +1,22 @@
 
-
-<header class="container-fluid bg-secondary p-3 bg1">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="logo">
-                    <h1 class="text-uppercase">
-                    <a href="/" style="text-decoration: none; color: rgb(245, 241, 241);">utn</a>
-                    </h1>
+    <header class="header" id="header">
+        <div class="header_toggle">
+            <i class="bx bx-menu" id="header-toggle"></i>
+        </div>
+    </header>
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="/" class="nav_logo"><i class="bx bx-home nav_logo-icon" style="font-size: 1.5rem;"></i><span class="nav_logo-name">Inicio</span></a>
+                <div class="nav_list">
+                    <a href="./carga" class="nav_link"><i class="bi bi-plus-circle" style="font-size: 1.3rem;"></i><span class="nav_name">Agregar modelo</span></a>
+                    <a href="/listado" class="nav_link"><i class='bx bx-user nav_icon'></i><span class="nav_name">CPU</span></a>
+                    <a href="/carga" class="nav_link"><i class='bx bx-message-square-detail nav_icon'></i><span class="nav_name">Notebook</span></a>
+                    <a href="#" class="nav_link"><i class='bx bx-bookmark nav_icon'></i><span class="nav_name">Monitor</span></a>
+                    <a href="#" class="nav_link"><i class='bx bx-folder nav_icon'></i><span class="nav_name">Impresora</span></a>
+                    <a href="#" class="nav_link"><i class='bx bx-bar-chart-alt-2 nav_icon'></i><span class="nav_name">Stats</span></a>
                 </div>
             </div>
-            <div class="col">
-                {{> navbar}}
-            </div>
-        </div>
+            <a href="#" class="nav_link"><i class='bx bx-log-out nav_icon'></i><span class="nav_name">SignOut</span></a>
+        </nav>
     </div>
-</header>
