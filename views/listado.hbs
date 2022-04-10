@@ -1,42 +1,101 @@
 
+<div class="container d-flex flex-column cuerpo">
+    <h1 class="text-center mt-5">{{titulo}}</h1>
+    <hr>
+    <div class="container-fluid w-{{width}} my-4">
+        <table class="table table-striped container">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Tipo</th>
+                    <th>Marca</th>
+                    <th>Modelo</th>
+                    <th>Aparición</th>
+                    <th>Pantalla/tamaño</th>
+                    <th>Tipo de RAM</th>
+                    <th>Tipo de Disco</th>
+                    <th>Marca Mother</th>
+                    <th>Modelo Mother</th>
+                    <th>Marca CORE </th>
+                    <th>Modelo CORE</th>
+                    <th>Año CORE</th>
+                </tr>
+            </thead>
 
-<div class="container">
-    <div class="text-center m-5">
-        <hr>
-        <h1>{{titulo}}</h1>
-        <hr>
+            <tbody>
+                {{#each results}}
+                <tr>
+                    <td> {{d_id}} </td>
+                    <td> {{d_AI_tipo}} </td>
+                    <td> {{d_marca}} </td>
+                    <td> {{d_modelo}} </td>
+                    <td> {{d_añoLanz}} </td>
+                    <td> {{d_Pant_inch}} </td>
+                    <td> {{d_RAM_tipo}} </td>
+                    <td> {{d_DSK_tipo}} </td>
+                    <td> {{d_MB_marca}} </td>
+                    <td> {{d_MB_code}} </td>
+                    <td> {{d_CORE_Marca}} </td>
+                    <td> {{d_CORE_code}} </td>
+                    <td> {{d_CORE_año}} </td>
+                    <td>
+                        <button class="btn btn-danger my-1" data-bs-toggle="modal" data-bs-target="#modal_delete{{d_id}}">
+                            Eliminar
+                        </button>
+                        <div class="modal fade" id="modal_delete{{d_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" >
+                            <div class="modal-dialog">
+                                <div class="modal-content bg-light">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h5>Estas a punto de eliminar el registro del elemento con las siguientes caracteristicas:</h5>
+                                        <table class="table table-striped container">
+                                            <thead>
+                                                <tr>
+                                                    <th>Tipo</th>
+                                                    <th>Marca</th>
+                                                    <th>Modelo</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> {{d_AI_tipo}} </td>
+                                                    <td> {{d_marca}} </td>
+                                                    <td> {{d_modelo}} </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <h3 class="text-danger">¿Desea continuar?</h3>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <form action="/listado" method="post">
+                                                <input type="hidden" class="form-control" name="d_id"  value="{{d_id}}">
+                                                <input type="submit" class="btn btn-danger" value="BORRAR">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+{{!--                          --}}
+                        </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="text-center validacion">
+            <h2 class="text-warning">
+                {{validacion}}
+            </h2>
+        </div>
+
     </div>
 </div>
 
 {{!-- Mostramos todos los productos a los clientes de la tabla Productos --}}
-
-    <table class="table table-striped container" id="mytable">
-        <thead>
-            <tr>
-                <th> ID AI</th>
-                <th> Nombre </th>
-                <th> Precio </th>
-                <th> Descripción </th>
-            </tr>
-        </thead>
-
-        <tbody>
-            {{#each results}}
-            <tr>
-                <td> {{producto_ID}} </td>
-                <td> {{producto_nombre}} </td>
-                <td> {{producto_precio}} </td>
-                <td> {{producto_descripcion}} </td>
-                <td>
-                    <a href="javascript:void(0);" class="btn btn-warning edit me-2" type="button" data-id="{{producto_ID}}" data-producto-nombre="{{producto_nombre}}" data-producto-precio="{{precio}}">Editar</a>
-                    <a href="javascript:void(0);" class="btn btn-danger edit" type="button" data-id="{{producto_ID}}">Eliminar</a>                
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
-    </table>
-
-
 </div>
 
 

@@ -24,6 +24,7 @@ conexion.connect((error) =>{
     console.log('Conexión a la Data Base exitosa!!');
 });
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 app.use(express.static(path.join(__dirname,"public")));
@@ -38,19 +39,22 @@ hbs.registerPartials(path.join(__dirname, 'views/partials'));
 app.get('/', (req, res) =>{
     res.render('index', {
         titulo: 'Inventario informatico',
+        index: true
     })
 });
 
-app.get('/carga', (req, res) =>{
-    res.render('carga', {
+app.get('/carga_m', (req, res) =>{
+    res.render('carga_m', {
         titulo: 'Seleccione un tipo de dispositivo',
         width: 50,
-        carga: true
+        carga: true,
+        carga_m: true
     })
 });
 
+
 app.get('/cpu', (req, res) =>{
-    res.render('carga', {
+    res.render('carga_m', {
         titulo: 'CPU',
         width: 75,
         cpu: true,
@@ -58,53 +62,50 @@ app.get('/cpu', (req, res) =>{
     })
 });
 app.post('/cpu', (req, res) =>{
-    //Desestructuración de las variables
-
     const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
 
     if(marca == '' || modelo == '' || fecha_mercado == ''){
         let validacion = 'Por favor, ingrese todos los datos obligatorios';
-        res.render('carga', {
+        res.render('carga_m', {
             titulo: 'error',
             width: 75,
             validacion
         });
     }else{
-        console.log('Marca '+ marca);
-        console.log('Modelo ' + modelo);
-        console.log('Lanzamiento ' + fecha_mercado);
-        console.log('Tipo de RAM '+ ram_tipo);
-        console.log('Tipo de DSK ' + dsk_tipo);
-        console.log('Marca MB ' + mb_marca);
-        console.log('Codigo MB '+ mb_cod);
-        console.log('marca CPU ' + core_marca);
-        console.log('Codigo CPU ' + core_cod);
-        console.log('Lanzamiento CPU ' + core_año);
-
-        res.render('carga', {titulo: 'Los datos fueron ingresados correctamente'})
-
-        //Insertar datos a la DB
-/*         let data = {
-            producto_nombre: nombre, 
-            producto_precio: precio,
-            producto_descripcion: descripcion
+//Insertar datos a la DB
+        let ai_tipo = "cpu"
+        let data = {
+        d_AI_tipo: ai_tipo, 
+        d_marca: marca,
+        d_modelo: modelo,
+        d_añoLanz: fecha_mercado,
+        d_RAM_tipo: ram_tipo,
+        d_DSK_tipo: dsk_tipo,
+        d_MB_marca: mb_marca,
+        d_MB_code: mb_cod,
+        d_CORE_Marca: core_marca,
+        d_CORE_code: core_cod,
+        d_CORE_año: core_año
         }
 
-        let sql = 'Insert into productos set ?';
- */
-/*         conexion.query(sql, data, (error, results) =>{
+        let sql = 'Insert into detalles set ?';
+        
+        conexion.query(sql, data, (error, results) =>{
             if(error) throw error;
-            res.render('index', {
-                titulo: 'Bienvenidos a la App',
-            }); 
+            res.render('carga_m', {
+                titulo: 'Seleccione un tipo de dispositivo',
+                width: 50,
+                carga: true,
+                validacion: 'la carga fue exitosa'
+            })
         })
- */    
+        
     }
 });
 
 
 app.get('/notebook', (req, res) =>{
-    res.render('carga', {
+    res.render('carga_m', {
         titulo: 'Notebook',
         width: 75,
         ntb: true,
@@ -113,52 +114,49 @@ app.get('/notebook', (req, res) =>{
 });
 app.post('/notebook', (req, res) =>{
     //Desestructuración de las variables
-
-    const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
-
-    if(marca == '' || modelo == '' || fecha_mercado == ''){
-        let validacion = 'Por favor, ingrese todos los datos obligatorios';
-        res.render('carga', {
-            titulo: 'error',
-            width: 75,
-            validacion
-        });
-    }else{
-        console.log('Marca '+ marca);
-        console.log('Modelo ' + modelo);
-        console.log('Lanzamiento ' + fecha_mercado);
-        console.log('Tipo de RAM '+ ram_tipo);
-        console.log('Tipo de DSK ' + dsk_tipo);
-        console.log('Marca MB ' + mb_marca);
-        console.log('Codigo MB '+ mb_cod);
-        console.log('marca CPU ' + core_marca);
-        console.log('Codigo CPU ' + core_cod);
-        console.log('Lanzamiento CPU ' + core_año);
-
-        res.render('carga', {titulo: 'Los datos fueron ingresados correctamente'})
-
-        //Insertar datos a la DB
-/*         let data = {
-            producto_nombre: nombre, 
-            producto_precio: precio,
-            producto_descripcion: descripcion
+        const { marca, modelo, fecha_mercado, pant_inch, ram_tipo, dsk_tipo, core_marca, core_cod, core_año } = req.body;
+    
+        if(marca == '' || modelo == '' || fecha_mercado == ''){
+            let validacion = 'Por favor, ingrese todos los datos obligatorios';
+            res.render('carga_m', {
+                titulo: 'error',
+                width: 75,
+                validacion
+            });
+        }else{
+    //Insertar datos a la DB
+            let ai_tipo = "notebook"
+            let data = {
+                d_AI_tipo: ai_tipo, 
+                d_marca: marca,
+                d_modelo: modelo,
+                d_añoLanz: fecha_mercado,
+                d_Pant_inch: pant_inch,
+                d_RAM_tipo: ram_tipo,
+                d_DSK_tipo: dsk_tipo,
+                d_CORE_Marca: core_marca,
+                d_CORE_code: core_cod,
+                d_CORE_año: core_año
+            }
+    
+            let sql = 'Insert into detalles set ?';
+            
+            conexion.query(sql, data, (error, results) =>{
+                if(error) throw error;
+                res.render('carga_m', {
+                    titulo: 'Seleccione un tipo de dispositivo',
+                    width: 50,
+                    carga: true,
+                    validacion: 'la carga fue exitosa'
+                })
+            })
+            
         }
-
-        let sql = 'Insert into productos set ?';
- */
-/*         conexion.query(sql, data, (error, results) =>{
-            if(error) throw error;
-            res.render('index', {
-                titulo: 'Bienvenidos a la App',
-            }); 
-        })
- */    
-    }
 });
 
 
 app.get('/monitor', (req, res) =>{
-    res.render('carga', {
+    res.render('carga_m', {
         titulo: 'Monitor',
         width: 75,
         disp: true,
@@ -167,49 +165,89 @@ app.get('/monitor', (req, res) =>{
 });
 app.post('/monitor', (req, res) =>{
     //Desestructuración de las variables
+        const { marca, modelo, fecha_mercado, pant_inch } = req.body;
+    
+        if(marca == '' || modelo == '' || fecha_mercado == ''){
+            let validacion = 'Por favor, ingrese todos los datos obligatorios';
+            res.render('carga_m', {
+                titulo: 'error',
+                width: 75,
+                validacion
+            });
+        }else{
+    //Insertar datos a la DB
+            let ai_tipo = "monitor"
+            let data = {
+                d_AI_tipo: ai_tipo, 
+                d_marca: marca,
+                d_modelo: modelo,
+                d_añoLanz: fecha_mercado,
+                d_Pant_inch: pant_inch,
+            }
 
-    const { marca, modelo, fecha_mercado, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
+            let sql = 'Insert into detalles set ?';
+            
+            conexion.query(sql, data, (error, results) =>{
+                if(error) throw error;
+                res.render('carga_m', {
+                    titulo: 'Seleccione un tipo de dispositivo',
+                    width: 50,
+                    carga: true,
+                    validacion: 'la carga fue exitosa'
+                })
+            })
+            
+        }
+});
 
-    if(marca == '' || modelo == '' || fecha_mercado == ''){
+
+app.get('/carga_p', (req, res) =>{
+    res.render('carga_p', {
+        titulo: 'Alta de persona/deposito',
+        width: 75,
+        post: 'carga_p',
+        carga_p: true
+    })
+});
+app.post('/carga_p', (req, res) =>{
+    const { Nombre, Apellido, username, Cel, Interno, IP, cod_Gerencia, id_jefe, Edificio, Piso, Sector } = req.body;
+
+    if(Nombre == '' || username == ''){
         let validacion = 'Por favor, ingrese todos los datos obligatorios';
-        res.render('carga', {
+        res.render('carga_p', {
             titulo: 'error',
             width: 75,
             validacion
         });
     }else{
-        console.log('Marca '+ marca);
-        console.log('Modelo ' + modelo);
-        console.log('Lanzamiento ' + fecha_mercado);
-        console.log('Tipo de RAM '+ ram_tipo);
-        console.log('Tipo de DSK ' + dsk_tipo);
-        console.log('Marca MB ' + mb_marca);
-        console.log('Codigo MB '+ mb_cod);
-        console.log('marca CPU ' + core_marca);
-        console.log('Codigo CPU ' + core_cod);
-        console.log('Lanzamiento CPU ' + core_año);
-
-        res.render('carga', {titulo: 'Los datos fueron ingresados correctamente'})
-
-        //Insertar datos a la DB
-/*         let data = {
-            producto_nombre: nombre, 
-            producto_precio: precio,
-            producto_descripcion: descripcion
+//Insertar datos a la DB
+        let data = {
+            Nombre:  Nombre,
+            Apellido: Apellido,
+            username: username,
+            Cel: Cel,
+            Interno: Interno,
+            IP: IP,
+            cod_Gerencia: cod_Gerencia,
+            // id_jefe: id_jefe,
+            Edificio: Edificio,
+            Piso: Piso,
+            Sector: Sector
         }
 
-        let sql = 'Insert into productos set ?';
- */
-/*         conexion.query(sql, data, (error, results) =>{
+        let sql = 'Insert into persona_deposito set ?';
+
+        conexion.query(sql, data, (error, results) =>{
             if(error) throw error;
             res.render('index', {
-                titulo: 'Bienvenidos a la App',
-            }); 
+                titulo: 'Inventario informatico',
+                width: 50,
+                carga: true,
+                validacion: 'la carga a sido exitosa'
+            })
         })
- */    
     }
 });
-
 
 app.post('/update', (req, res) =>{
 
@@ -232,55 +270,40 @@ app.post('/update', (req, res) =>{
 
 
 app.get('/listado', (req, res) =>{
-
-    let sql = 'SELECT * FROM AI';
-
+    
+    let sql = 'SELECT * FROM detalles';
+    
     conexion.query(sql, (error, results) =>{
         if(error) throw error;
         res.render('listado', {
             titulo: 'listado',
-            results: results,        
+            width: 100,
+            listado: true,
+            results: results
         })
     })
-
-    
-
 });
 
-app.get('/contacto', (req, res) =>{
-    res.render('contacto', {titulo: 'Escríbenos'})
-});
+app.post('/listado', (req, res) => {
+    const { d_id } = req.body;
+    console.log( d_id );
+    res.render('listado', {
+        titulo: 'Listado',
+        width: 100,
+        validacion: 'Los datos del registro Nro ' + d_id + ' se han eliminado'
+    })
 
-app.post('/contacto', (req, res) =>{
-
-    //Desestructuración de las variables
-    const { nombre, email } = req.body;
-        
-    if(nombre == "" || email == ""){
-        
-        let validacion = 'Faltan tus datos';
-        
-        res.render('contacto', {
-            titulo: 'Escríbenos',
-            validacion
-        });
-
-    }else{
-
-        console.log(nombre);
-        console.log(email);
-
+    const sql = "DELETE FROM detalles WHERE d_id =" + d_id + "";
+    conexion.query(sql, (error, results) =>{
+        if(error) throw error;
         res.render('index', {
             titulo: 'Bienvenidos a la App',
         }); 
-    }
-});
-
-
-
-
+    })
+})
 
 //conexion.end();
+
 
 app.listen(port, () =>{
     console.log(`Servidor está trabajando en el Puerto ${port}`);
@@ -289,7 +312,3 @@ app.listen(port, () =>{
 app.on('error', (err) =>{
     console.log(`Error en la ejecución del Servidor ${error}`);
 })
-
-
-
-

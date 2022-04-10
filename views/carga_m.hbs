@@ -1,0 +1,29 @@
+
+<div class="container d-flex flex-column cuerpo">
+    <h1 class="text-center mt-5">{{titulo}}</h1>
+    <hr>
+    <div class="container-fluid w-{{width}}">
+{{!-- First views - buttons --}}
+        {{#if carga}}
+            {{> carga}}
+        {{/if}}
+
+{{!-- Loading Forms - model  --}}
+        {{#if cpu}}
+            {{> c_cpu}}
+        {{/if}}
+
+        {{#if ntb}}
+            {{> c_ntb}}
+        {{/if}}
+
+        {{#if disp}}
+            {{> c_disp}}
+        {{/if}}
+        <div class="text-center validacion">
+            <h2 class="text-danger">
+                {{validacion}}
+            </h2>
+        </div>
+    </div>
+</div>

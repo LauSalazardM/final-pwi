@@ -1,22 +1,13 @@
 
-    <header class="header" id="header">
-        <div class="header_toggle">
-            <i class="bx bx-menu" id="header-toggle"></i>
-        </div>
-    </header>
-    <div class="l-navbar" id="nav-bar">
-        <nav class="nav">
-            <div>
-                <a href="/" class="nav_logo"><i class="bx bx-home nav_logo-icon" style="font-size: 1.5rem;"></i><span class="nav_logo-name">Inicio</span></a>
-                <div class="nav_list">
-                    <a href="./carga" class="nav_link"><i class="bi bi-plus-circle" style="font-size: 1.3rem;"></i><span class="nav_name">Agregar modelo</span></a>
-                    <a href="/listado" class="nav_link"><i class='bx bx-user nav_icon'></i><span class="nav_name">CPU</span></a>
-                    <a href="/carga" class="nav_link"><i class='bx bx-message-square-detail nav_icon'></i><span class="nav_name">Notebook</span></a>
-                    <a href="#" class="nav_link"><i class='bx bx-bookmark nav_icon'></i><span class="nav_name">Monitor</span></a>
-                    <a href="#" class="nav_link"><i class='bx bx-folder nav_icon'></i><span class="nav_name">Impresora</span></a>
-                    <a href="#" class="nav_link"><i class='bx bx-bar-chart-alt-2 nav_icon'></i><span class="nav_name">Stats</span></a>
-                </div>
-            </div>
-            <a href="#" class="nav_link"><i class='bx bx-log-out nav_icon'></i><span class="nav_name">SignOut</span></a>
-        </nav>
-    </div>
+
+<div class="d-flex flex-column flex-shrink-0 bg-light vh-100 float-start barra" style="width: 100px;">
+    <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
+        
+        <li class="nav-item"> <a href="/" class="nav-link {{#if index}}active{{/if}} py-3 border-bottom"> <i class="bx bx-home nav_logo-icon" style="font-size: 1.5rem;"></i><small class="nav_logo-name">Inicio</small> </a> </li>
+        <li> <a href="./carga_m" class="nav-link {{#if carga_m}}active{{/if}} py-3 border-bottom"> <i class="bi bi-plus-circle" style="font-size: 1.3rem;"></i><small class="nav_name">Agregar modelo</small> </a> </li>
+        <li> <a href="./carga_p" class="nav-link {{#if carga_p}}active{{/if}} py-3 border-bottom"> <i class="bi bi-person-plus" style="font-size: 1.3rem;"></i><small class="nav_name">Agregar responsable</small> </a> </li>
+        <li> <a href="/listado" class="nav-link {{#if listado}}active{{/if}} py-3 border-bottom"> <i class="bi bi-card-list" style="font-size: 1.3rem;"></i><small class="nav_name">Listado</small> </a> </li>
+        <li> <a href="#" class="nav-link {{#if home}}active{{/if}} py-3 border-bottom"> <i class="fa fa-bookmark"></i> <small>Bookmark</small> </a> </li>
+    </ul>
+</div>
+
