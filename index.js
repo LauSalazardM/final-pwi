@@ -7,7 +7,7 @@ const path = require('path');
 const hbs = require('hbs');
 
 //Traemos la librería para la conexión
-const mysql = require('mysql2');
+/* const mysql = require('mysql2'); */
 
 //Creamos la configuración de la conexión
 /* const conexion =  mysql.createConnection({
@@ -90,7 +90,7 @@ app.post('/cpu', (req, res) =>{
 
         let sql = 'Insert into detalles set ?';
         
-        conexion.query(sql, data, (error, results) =>{
+        /* conexion.query(sql, data, (error, results) =>{
             if(error) throw error;
             res.render('carga_m', {
                 titulo: 'Seleccione un tipo de dispositivo',
@@ -98,8 +98,15 @@ app.post('/cpu', (req, res) =>{
                 carga: true,
                 validacion: 'la carga fue exitosa'
             })
-        })
+        }) */
         
+        res.render('carga_m', {
+            titulo: 'Seleccione un tipo de dispositivo',
+            width: 50,
+            carga: true,
+            validacion: 'la carga fue exitosa'
+        })
+
     }
 });
 
@@ -142,7 +149,7 @@ app.post('/notebook', (req, res) =>{
     
             let sql = 'Insert into detalles set ?';
             
-            conexion.query(sql, data, (error, results) =>{
+            /* conexion.query(sql, data, (error, results) =>{
                 if(error) throw error;
                 res.render('carga_m', {
                     titulo: 'Seleccione un tipo de dispositivo',
@@ -150,7 +157,15 @@ app.post('/notebook', (req, res) =>{
                     carga: true,
                     validacion: 'la carga fue exitosa'
                 })
+            }) */
+
+            res.render('carga_m', {
+                titulo: 'Seleccione un tipo de dispositivo',
+                width: 50,
+                carga: true,
+                validacion: 'la carga fue exitosa'
             })
+
             
         }
 });
