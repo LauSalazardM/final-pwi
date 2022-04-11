@@ -7,22 +7,22 @@ const path = require('path');
 const hbs = require('hbs');
 
 //Traemos la librería para la conexión
-/* const mysql = require('mysql2'); */
+const mysql = require('mysql2');
 
 //Creamos la configuración de la conexión
-/* const conexion =  mysql.createConnection({
+const conexion =  mysql.createConnection({
     host: "localhost",
     port: 3306,
     user: process.env.USR,
     password: process.env.PASS,
     database: process.env.DB,
-}); */
+}); 
 
 //Conectamos a la DB
-/* conexion.connect((error) =>{
+conexion.connect((error) =>{
     if(error) throw error;
     console.log('Conexión a la Data Base exitosa!!');
-}); */
+});
 
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
@@ -90,7 +90,7 @@ app.post('/cpu', (req, res) =>{
 
         let sql = 'Insert into detalles set ?';
         
-        /* conexion.query(sql, data, (error, results) =>{
+        conexion.query(sql, data, (error, results) =>{
             if(error) throw error;
             res.render('carga_m', {
                 titulo: 'Seleccione un tipo de dispositivo',
@@ -98,15 +98,7 @@ app.post('/cpu', (req, res) =>{
                 carga: true,
                 validacion: 'la carga fue exitosa'
             })
-        }) */
-        
-        res.render('carga_m', {
-            titulo: 'Seleccione un tipo de dispositivo',
-            width: 50,
-            carga: true,
-            validacion: 'la carga fue exitosa'
         })
-
     }
 });
 
@@ -149,7 +141,7 @@ app.post('/notebook', (req, res) =>{
     
             let sql = 'Insert into detalles set ?';
             
-            /* conexion.query(sql, data, (error, results) =>{
+            conexion.query(sql, data, (error, results) =>{
                 if(error) throw error;
                 res.render('carga_m', {
                     titulo: 'Seleccione un tipo de dispositivo',
@@ -157,16 +149,7 @@ app.post('/notebook', (req, res) =>{
                     carga: true,
                     validacion: 'la carga fue exitosa'
                 })
-            }) */
-
-            res.render('carga_m', {
-                titulo: 'Seleccione un tipo de dispositivo',
-                width: 50,
-                carga: true,
-                validacion: 'la carga fue exitosa'
             })
-
-            
         }
 });
 
@@ -204,7 +187,7 @@ app.post('/monitor', (req, res) =>{
 
             let sql = 'Insert into detalles set ?';
             
-/*             conexion.query(sql, data, (error, results) =>{
+            conexion.query(sql, data, (error, results) =>{
                 if(error) throw error;
                 res.render('carga_m', {
                     titulo: 'Seleccione un tipo de dispositivo',
@@ -212,12 +195,6 @@ app.post('/monitor', (req, res) =>{
                     carga: true,
                     validacion: 'la carga fue exitosa'
                 })
-            }) */
-            res.render('carga_m', {
-                titulo: 'Seleccione un tipo de dispositivo',
-                width: 50,
-                carga: true,
-                validacion: 'la carga fue exitosa'
             })
         }
 });
@@ -257,18 +234,13 @@ app.post('/update', (req, res) =>{
         "', d_CORE_año='" + data.d_CORE_año +
         "'WHERE d_id=" + data.d_id + ";";
 
-/*     conexion.query(sql, data, (error, results) =>{
+    conexion.query(sql, data, (error, results) =>{
         if(error) throw error;
             res.render('index', {
                 titulo: 'Inventario informatico',
                 index: true,
                 validacion: 'has editado con exito'
             })
-        }) */
-        res.render('index', {
-            titulo: 'Inventario informatico',
-            index: true,
-            validacion: 'has editado con exito'
         })
     });
 
@@ -278,7 +250,7 @@ app.get('/listado', (req, res) =>{
     let sql = 'SELECT * FROM detalles';
     console.log(sql);
     
-/*     conexion.query(sql, (error, results) =>{
+    conexion.query(sql, (error, results) =>{
         if(error) throw error;
         res.render('listado', {
             titulo: 'listado',
@@ -286,12 +258,6 @@ app.get('/listado', (req, res) =>{
             listado: true,
             results: results
         })
-    }) */
-    res.render('listado', {
-        titulo: 'listado',
-        width: 100,
-        listado: true,
-        // results: results
     })
 });
 
