@@ -12,6 +12,6 @@ Ademas, en el listado se cuenta con dos botones: el verde para editar y el rojo 
 Ambos botones disparan un ventana modal que en el caso de la edicion, contiene un formulario que precarga los atributos del registro a modificar y, en el caso del de eliminación, simplemente carga la advertencia.
 
 Muchas gracias por leer este Readme.
-Quedo a disposicion por cualquier consulta que surje.
+Quedo a disposicion por cualquier consulta que surja.
 Saludos,
 Lautaro
