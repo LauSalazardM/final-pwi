@@ -287,7 +287,12 @@ app.get('/listado', (req, res) =>{
             results: results
         })
     }) */
-
+    res.render('listado', {
+        titulo: 'listado',
+        width: 100,
+        listado: true,
+        results: results
+    })
 });
 
 app.post('/listado', (req, res) => {
