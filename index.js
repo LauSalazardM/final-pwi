@@ -291,7 +291,7 @@ app.get('/listado', (req, res) =>{
         titulo: 'listado',
         width: 100,
         listado: true,
-        results: results
+        // results: results
     })
 });
 
