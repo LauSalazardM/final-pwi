@@ -1,0 +1,66 @@
+<td>
+    <button class="btn-sm btn-success my-1" data-bs-toggle="modal" data-bs-target="#modal_edit{{d_id}}">
+        <i class="bi bi-pencil-square text-white"></i>
+    </button>
+    <div class="modal fade" id="modal_edit{{d_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" >
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Eliminando registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="container modal-body">
+                    <p>Editá el valor deseado</p>
+                    {{> modal_e}}
+                    <h4 class="text-danger">¿Desea continuar?</h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>
+<td>
+    <button class="btn-sm btn-danger my-1" data-bs-toggle="modal" data-bs-target="#modal_delete{{d_id}}">
+        <i class="bi bi-trash text-white"></i>
+    </button>
+    <div class="modal fade" id="modal_delete{{d_id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" >
+        <div class="modal-dialog">
+            <div class="modal-content bg-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Eliminando registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body m-1">
+                    <p>Estas a punto de eliminar el registro del elemento con las siguientes caracteristicas:</p>
+                    <table class="mx-2 table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Marca</th>
+                                <th>Modelo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> {{d_AI_tipo}} </td>
+                                <td> {{d_marca}} </td>
+                                <td> {{d_modelo}} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h3 class="text-danger">¿Desea continuar?</h3>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="/listado" method="post">
+                            <input type="hidden" class="form-control" name="d_id"  value="{{d_id}}">
+                            <input type="submit" class="btn btn-danger" value="Borrar">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</td>

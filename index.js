@@ -46,7 +46,7 @@ app.get('/', (req, res) =>{
 app.get('/carga_m', (req, res) =>{
     res.render('carga_m', {
         titulo: 'Seleccione un tipo de dispositivo',
-        width: 50,
+        width: 75,
         carga: true,
         carga_m: true
     })
@@ -58,6 +58,7 @@ app.get('/cpu', (req, res) =>{
         titulo: 'CPU',
         width: 75,
         cpu: true,
+        carga_m: true,
         post: 'cpu'
     })
 });
@@ -109,6 +110,7 @@ app.get('/notebook', (req, res) =>{
         titulo: 'Notebook',
         width: 75,
         ntb: true,
+        carga_m: true,
         post: 'notebook'
     })
 });
@@ -160,6 +162,7 @@ app.get('/monitor', (req, res) =>{
         titulo: 'Monitor',
         width: 75,
         disp: true,
+        carga_m: true,
         post: 'monitor'
     })
 });
@@ -201,70 +204,47 @@ app.post('/monitor', (req, res) =>{
 });
 
 
-app.get('/carga_p', (req, res) =>{
-    res.render('carga_p', {
-        titulo: 'Alta de persona/deposito',
-        width: 75,
-        post: 'carga_p',
-        carga_p: true
-    })
-});
-app.post('/carga_p', (req, res) =>{
-    const { Nombre, Apellido, username, Cel, Interno, IP, cod_Gerencia, id_jefe, Edificio, Piso, Sector } = req.body;
+app.post('/update', (req, res) =>{
+//Desestructuración de las variables opcion.
+    const { id, ai_tipo, marca, modelo, fecha_mercado, pant_inch, ram_tipo, dsk_tipo, mb_marca, mb_cod, core_marca, core_cod, core_año } = req.body;
 
-    if(Nombre == '' || username == ''){
-        let validacion = 'Por favor, ingrese todos los datos obligatorios';
-        res.render('carga_p', {
-            titulo: 'error',
-            width: 75,
-            validacion
-        });
-    }else{
-//Insertar datos a la DB
-        let data = {
-            Nombre:  Nombre,
-            Apellido: Apellido,
-            username: username,
-            Cel: Cel,
-            Interno: Interno,
-            IP: IP,
-            cod_Gerencia: cod_Gerencia,
-            // id_jefe: id_jefe,
-            Edificio: Edificio,
-            Piso: Piso,
-            Sector: Sector
+    let data = {
+        d_id: id,
+        d_AI_tipo: ai_tipo, 
+        d_marca: marca,
+        d_modelo: modelo,
+        d_añoLanz: fecha_mercado,
+        d_Pant_inch: pant_inch,
+        d_RAM_tipo: ram_tipo,
+        d_DSK_tipo: dsk_tipo,
+        d_MB_marca: mb_marca,
+        d_MB_code: mb_cod,
+        d_CORE_Marca: core_marca,
+        d_CORE_code: core_cod,
+        d_CORE_año: core_año
         }
 
-        let sql = 'Insert into persona_deposito set ?';
-
-        conexion.query(sql, data, (error, results) =>{
-            if(error) throw error;
-            res.render('index', {
-                titulo: 'Inventario informatico',
-                width: 50,
-                carga: true,
-                validacion: 'la carga a sido exitosa'
-            })
-        })
-    }
-});
-
-app.post('/update', (req, res) =>{
-
-    //Desestructuración de las variables opcion 2.
-    console.log(req.body.producto_nombre);
-    console.log(req.body.producto_precio);
-    console.log(req.body.producto_ID);
-
-    //Creamos variable con los Datos incluidos
-    let sql = "UPDATE productos SET producto_nombre='" + req.body.producto_nombre + 
-    "', producto_precio='" + req.body.producto_precio + "'WHERE producto_ID_=" + req.body.producto_ID;
+    let sql = "UPDATE activos_informaticos.detalles SET d_AI_tipo='" + data.d_AI_tipo + 
+        "', d_marca='" + data.d_marca +
+        "', d_modelo='" + data.d_modelo +
+        "', d_añoLanz='" + data.d_añoLanz +
+        "', d_Pant_inch='" + data.d_Pant_inch +
+        "', d_RAM_tipo='" + data.d_RAM_tipo +
+        "', d_DSK_tipo='" + data.d_DSK_tipo +
+        "', d_MB_marca='" + data.d_MB_marca +
+        "', d_MB_code='" + data.d_MB_code +
+        "', d_CORE_Marca='" + data.d_CORE_Marca +
+        "', d_CORE_code='" + data.d_CORE_code +
+        "', d_CORE_año='" + data.d_CORE_año +
+        "'WHERE d_id=" + data.d_id + ";";
 
     conexion.query(sql, data, (error, results) =>{
     if(error) throw error;
     res.render('index', {
-        titulo: 'Carga exitosa',
-        }); 
+        titulo: 'Inventario informatico',
+        index: true,
+        validacion: 'has editado con exito'
+    })
     })
 });
 
@@ -296,9 +276,6 @@ app.post('/listado', (req, res) => {
     const sql = "DELETE FROM detalles WHERE d_id =" + d_id + "";
     conexion.query(sql, (error, results) =>{
         if(error) throw error;
-        res.render('index', {
-            titulo: 'Bienvenidos a la App',
-        }); 
     })
 })
 

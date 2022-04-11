@@ -1,0 +1,90 @@
+    <form action="/update" method="post">
+        <div class="container row row-cols-2 g-2">
+            <div class="mt-4 col col-md-3">
+                <input type="hidden" name="id" value="{{d_id}}">
+                <label class="form-label form-label-sm">Tipo</label>
+                <input type="text" class="form-control form-control-sm" list="tipos" name="ai_tipo" value="{{d_AI_tipo}}">
+                <datalist id="tipos">
+                    <option value="cpu">
+                    <option value="notebook">
+                    <option value="monitor">
+                </datalist>
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Marca</label>
+                <input type="text" class="form-control form-control-sm" name="marca" value="{{d_marca}}">
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Modelo</label>
+                <input type="text" class="form-control form-control-sm" name="modelo" value="{{d_modelo}}">
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Año de lanzamiento</label>
+                <input type="number" class="form-control form-control-sm" min="2000" max="2030" name="fecha_mercado" value="{{d_añoLanz}}">
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Tamaño de la pantalla</label>
+                <input type="text" class="form-control form-control-sm" list="pantallas" name="pant_inch" value="{{d_Pant_inch}}">
+                <datalist id="pantallas">
+                    <option value="11.1">
+                    <option value="12.1">
+                    <option value="13.3">
+                    <option value="14.1">
+                    <option value="15.6">
+                    <option value="17.3">
+                </datalist>
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Tipo de RAM</label>
+                <input type="text" class="form-control form-control-sm" list="ram" name="ram_tipo" value="{{d_RAM_tipo}}">
+                <datalist id="ram">
+                    <option value="DDR1">
+                    <option value="DDR2">
+                    <option value="DDR3">
+                    <option value="DDR4">
+                    <option value="DDR5">
+                </datalist>
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Tipo de almacenamiento</label>
+                <input type="text" class="form-control form-control-sm" list="dsk_t" name="dsk_tipo" value="{{d_DSK_tipo}}">
+                <datalist id="dsk_t">
+                    <option value="SSD">
+                    <option value="HDD">
+                    <option value="SSD_HDD">
+                </datalist>
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Marca Motherboard</label>
+                <input type="text" class="form-control form-control-sm" list="dsk_t" name="mb_marca" value="{{d_MB_marca}}">
+                <datalist id="dsk_t">
+                    <option value="asus">
+                    <option value="gigabyte">
+                    <option value="intel">
+                </datalist>
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Código de Mother</label>
+                <input type="text" class="form-control form-control-sm" name="mb_cod" value="{{d_MB_code}}">
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Marca del procesador</label>
+                <input type="text" class="form-control form-control-sm" list="proc" name="core_marca" value="{{d_CORE_Marca}}">
+                <datalist id="proc">
+                    <option value="intel">
+                    <option value="amd">
+                </datalist>
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Código del procesador</label>
+                <input type="text" class="form-control form-control-sm" name="core_cod" value="{{d_CORE_code}}">
+            </div>
+            <div class="mt-4 col col-md-3">
+                <label class="form-label form-label-sm">Año procesador</label>
+                <input type="number" min="2000" max="2030" class="form-control form-control-sm" name="core_año" value="{{d_CORE_año}}">
+            </div>
+        </div>
+        <div class="text-center mb-5">
+            <input type="submit" class="my-4 btn btn-primary w-50 p-2" value="Enviar Datos">
+        </div>
+    </form>
